@@ -10,7 +10,7 @@
 		BF74B33C25754339000727CE /* CarsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B33B25754339000727CE /* CarsApp.swift */; };
 		BF74B33E25754339000727CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B33D25754339000727CE /* ContentView.swift */; };
 		BF74B3402575433B000727CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF74B33F2575433B000727CE /* Assets.xcassets */; };
-		BF74B3432575433B000727CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF74B3422575433B000727CE /* Preview Assets.xcassets */; };
+		BFC781EF257552FC0097B264 /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = BFC781EE257552FC0097B264 /* Preview Content */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +18,9 @@
 		BF74B33B25754339000727CE /* CarsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsApp.swift; sourceTree = "<group>"; };
 		BF74B33D25754339000727CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF74B33F2575433B000727CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BF74B3422575433B000727CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BF74B3442575433B000727CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF74B34B257544A8000727CE /* Cars.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cars.entitlements; sourceTree = "<group>"; };
+		BFC781EE257552FC0097B264 /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,21 +53,14 @@
 		BF74B33A25754339000727CE /* Cars */ = {
 			isa = PBXGroup;
 			children = (
+				BF74B34B257544A8000727CE /* Cars.entitlements */,
 				BF74B33B25754339000727CE /* CarsApp.swift */,
 				BF74B33D25754339000727CE /* ContentView.swift */,
 				BF74B33F2575433B000727CE /* Assets.xcassets */,
 				BF74B3442575433B000727CE /* Info.plist */,
-				BF74B3412575433B000727CE /* Preview Content */,
+				BFC781EE257552FC0097B264 /* Preview Content */,
 			);
 			path = Cars;
-			sourceTree = "<group>";
-		};
-		BF74B3412575433B000727CE /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				BF74B3422575433B000727CE /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +120,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF74B3432575433B000727CE /* Preview Assets.xcassets in Resources */,
+				BFC781EF257552FC0097B264 /* Preview Content in Resources */,
 				BF74B3402575433B000727CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,8 +261,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cars/Cars.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cars/Preview Content\"";
+				DEVELOPMENT_TEAM = 6L9VXNA34H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -278,6 +274,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdolha.Cars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -288,8 +285,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cars/Cars.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cars/Preview Content\"";
+				DEVELOPMENT_TEAM = 6L9VXNA34H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -299,6 +298,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdolha.Cars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
