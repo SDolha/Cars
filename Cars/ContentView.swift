@@ -40,16 +40,20 @@ struct ContentView: View {
                             }
                         }
                     }
-                    VStack{
-                        Spacer()
-                        Image("Car-computer")
-                            .resizable().scaledToFit()
-                            .frame(width: 150, height: 100)
-                        Spacer()
-                        Image("Car-you")
-                            .resizable().scaledToFit()
-                            .frame(width: 150, height: 100)
-                        Spacer()
+                    GeometryReader { geometry in
+                        VStack{
+                            Spacer()
+                            Image("Car-computer")
+                                .resizable().scaledToFit()
+                                .frame(width: 150, height: 100)
+                                .position(x: 75 + computersCarPosition * geometry.size.width / 100, y: 50)
+                            Spacer()
+                            Image("Car-you")
+                                .resizable().scaledToFit()
+                                .frame(width: 150, height: 100)
+                                .position(x: 75 + yourCarPosition * geometry.size.width / 100, y: 50)
+                            Spacer()
+                        }
                     }.frame(height: 250)
                 }
                 Rectangle()
@@ -58,15 +62,56 @@ struct ContentView: View {
             }
             Spacer()
             HStack {
+                Text(banner)
+                    .font(.title)
+                    .foregroundColor(bannerColor)
+                    .padding()
                 Spacer()
+                if (!canAccelerate) {
+                    Button("Restart", action: restart)
+                        .frame(width: 200, height: 100)
+                        .background(Color.purple).foregroundColor(Color.white)
+                        .padding()
+                }
                 Button("Accelerate", action: accelerate)
                     .frame(width: 200, height: 100)
                     .background(Color.orange).foregroundColor(Color.white)
                     .padding()
+                    .disabled(!canAccelerate)
             }
         }
     }
+    @State var canAccelerate = true
+    @State var computersCarPosition = CGFloat(0)
+    @State var yourCarPosition = CGFloat(0)
+    static let maxCarPosition = CGFloat(85)
+    @State var banner = "Start!"
+    @State var bannerColor = Color.green
     func accelerate() {
-        //...
+        withAnimation {
+            banner = "Go!"
+            bannerColor = .white
+            yourCarPosition += 5
+            computersCarPosition += CGFloat.random(in: 0..<10)
+            if yourCarPosition > Self.maxCarPosition || computersCarPosition > Self.maxCarPosition {
+                if yourCarPosition > computersCarPosition {
+                    banner = "You win!"
+                    bannerColor = .yellow
+                } else {
+                    banner = "You lose!"
+                    bannerColor = .red
+                }
+                canAccelerate = false
+            }
+        }
+    }
+    func restart() {
+        withAnimation {
+            banner = "Start!"
+            bannerColor = .green
+            yourCarPosition = 0
+            computersCarPosition = 0
+            canAccelerate = true
+        }
     }
 }
