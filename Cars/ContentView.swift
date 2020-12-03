@@ -13,6 +13,9 @@ struct ContentView: View {
             Spacer()
             VStack(spacing: 0) {
                 Rectangle()
+                    .fill(Color(red: 0, green: 0.25, blue: 0))
+                    .frame(height: 10)
+                Rectangle()
                     .fill(Color.gray)
                     .frame(height: 5)
                 ZStack {
@@ -41,17 +44,29 @@ struct ContentView: View {
                         }
                     }
                     GeometryReader { geometry in
-                        VStack{
+                        VStack {
                             Spacer()
                             Image("Car-computer")
                                 .resizable().scaledToFit()
                                 .frame(width: 150, height: 100)
                                 .position(x: 75 + computersCarPosition * geometry.size.width / 100, y: 50)
                             Spacer()
-                            Image("Car-you")
-                                .resizable().scaledToFit()
-                                .frame(width: 150, height: 100)
-                                .position(x: 75 + yourCarPosition * geometry.size.width / 100, y: 50)
+                            ZStack {
+                                Image("Car-you")
+                                    .resizable().scaledToFit()
+                                    .frame(width: 150, height: 100)
+                                    .position(x: 75 + yourCarPosition * geometry.size.width / 100, y: 50)
+                                if (yourCarPosition == 0) {
+                                    HStack {
+                                        Text("You")
+                                            .font(.title)
+                                            .foregroundColor(.blue)
+                                            .padding(.top, 65)
+                                            .padding(.horizontal, 50)
+                                        Spacer()
+                                    }
+                                }
+                            }
                             Spacer()
                         }
                     }.frame(height: 250)
@@ -59,6 +74,9 @@ struct ContentView: View {
                 Rectangle()
                     .fill(Color.gray)
                     .frame(height: 5)
+                Rectangle()
+                    .fill(Color(red: 0, green: 0.25, blue: 0))
+                    .frame(height: 10)
             }
             Spacer()
             HStack {
@@ -68,16 +86,20 @@ struct ContentView: View {
                     .padding()
                 Spacer()
                 if (!canAccelerate) {
-                    Button("Restart", action: restart)
+                    Button(action: restart) {
+                        Text("Restart")
+                            .frame(width: 200, height: 100)
+                            .background(Color.purple).foregroundColor(Color.white)
+                            .padding()
+                    }
+                }
+                Button(action: accelerate) {
+                    Text("Accelerate")
                         .frame(width: 200, height: 100)
-                        .background(Color.purple).foregroundColor(Color.white)
+                        .background(Color.orange).foregroundColor(Color.white)
                         .padding()
                 }
-                Button("Accelerate", action: accelerate)
-                    .frame(width: 200, height: 100)
-                    .background(Color.orange).foregroundColor(Color.white)
-                    .padding()
-                    .disabled(!canAccelerate)
+                .disabled(!canAccelerate)
             }
         }
     }
@@ -90,16 +112,19 @@ struct ContentView: View {
     func accelerate() {
         withAnimation {
             banner = "Go!"
-            bannerColor = .white
+            bannerColor = .gray
             yourCarPosition += 5
-            computersCarPosition += CGFloat.random(in: 0..<10)
+            computersCarPosition += .random(in: 0..<10)
             if yourCarPosition > Self.maxCarPosition || computersCarPosition > Self.maxCarPosition {
-                if yourCarPosition > computersCarPosition {
+                if yourCarPosition > computersCarPosition + 1 {
                     banner = "You win!"
-                    bannerColor = .yellow
-                } else {
+                    bannerColor = .blue
+                } else if computersCarPosition > yourCarPosition + 1 {
                     banner = "You lose!"
                     bannerColor = .red
+                } else {
+                    banner = "Draw!"
+                    bannerColor = .yellow
                 }
                 canAccelerate = false
             }
